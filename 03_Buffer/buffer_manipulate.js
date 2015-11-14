@@ -12,5 +12,5 @@ buffer3[1] = 0x66;
 console.log('4: ' + buffer1.toString());  // slice() returns only the pointer. So change the new one will affect original one.
 
 var buffer4 = new Buffer(buffer1.length);
-buffer1.copy(buffer4);
+buffer1.copy(buffer4);     // A little anti-intuition. src.copy(dest);
 console.log('5: ' + buffer4.toString());  // This is how to copy.
