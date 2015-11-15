@@ -1,0 +1,19 @@
+﻿var fs = require('fs');
+
+function readText(pathname) {
+	var bin = fs.readFileSync(pathname);    // returns a Buffer
+	
+	//BOM for utf8 is EF BB BF
+	//BOM for utf16be is FE FF
+	//BOM for utf16le is FF FE
+	if (bin[0] === 0xEF && bin[1] === 0xBB && bin[2] === 0xBF) {    
+		console.log('Has BOM');
+		bin = bin.slice(3);
+	}
+	
+	return bin.toString('utf8');
+}
+
+var text = readText(process.argv[2]);
+fs.writeFileSync('after_removal', text);
+
